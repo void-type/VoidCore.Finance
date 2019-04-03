@@ -3,15 +3,27 @@ using System.Threading.Tasks;
 
 namespace VoidCore.Finance
 {
-    public class AmortizationCalculator
+    /// <summary>
+    /// Calculates an amortization schedule with information about the loan.
+    /// </summary>
+    public sealed class AmortizationCalculator
     {
         private readonly IFinancial _financial;
 
+        /// <summary>
+        /// Create a new Amortization Calculator
+        /// </summary>
+        /// <param name="financial"></param>
         public AmortizationCalculator(IFinancial financial)
         {
             _financial = financial;
         }
 
+        /// <summary>
+        /// Calculate the loan request.
+        /// </summary>
+        /// <param name="request">The request to calculate</param>
+        /// <returns>A completed AmortizationResponse</returns>
         public AmortizationResponse Calculate(AmortizationRequest request)
         {
             var ratePerPeriod = request.RatePerPeriod;
