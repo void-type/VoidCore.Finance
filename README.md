@@ -9,10 +9,6 @@ A financial library with primary focus on simple amortization and time-value of 
 
 VoidCore.Finance is a replacement for the VisualBasic and Excel Financial functions for C#. It includes a basic amortization calculator for performance-optimized schedule creation.
 
-TODO:
-
-* Payment deviations feature for amortization calculator.
-
 [Payment Calculator](https://github.com/void-type/payment_calculator_wpf) is an example app using VoidCore.Finance.
 
 ## Developers
