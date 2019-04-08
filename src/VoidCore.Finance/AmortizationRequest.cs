@@ -25,11 +25,6 @@ namespace VoidCore.Finance
                 throw new ArgumentException("Cannot be less than 1.", nameof(numberOfPeriods));
             }
 
-            if (ratePerPeriod < 0)
-            {
-                throw new ArgumentException("Cannot be less than 0.", nameof(ratePerPeriod));
-            }
-
             TotalPrincipal = totalPrincipal;
             NumberOfPeriods = numberOfPeriods;
             RatePerPeriod = ratePerPeriod;

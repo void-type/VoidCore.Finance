@@ -20,6 +20,18 @@ namespace VoidCore.Finance.Test
         }
 
         [Fact]
+        public void NoInterestLoan()
+        {
+            var request = new AmortizationRequest(1000, 100, 0);
+
+            var response = _calculator.Calculate(request);
+
+            CheckLoan(10m, 0m, 1000m, 100, response);
+            CheckPeriod(10m, 0m, 960m, response.Schedule[3]);
+            CheckPeriod(10m, 0m, 0m, response.Schedule[request.NumberOfPeriods - 1]);
+        }
+
+        [Fact]
         public void SmallLoanMonthly()
         {
             var request = new AmortizationRequest(2000, 60, .005m / 12);

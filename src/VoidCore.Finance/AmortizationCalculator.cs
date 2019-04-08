@@ -34,12 +34,15 @@ namespace VoidCore.Finance
 
             Parallel.For(1, numberOfPeriods + 1, periodNumber =>
             {
-                schedule[periodNumber - 1] = new AmortizationPeriod(
-                    periodNumber: periodNumber,
-                    interestPayment: _financial.InterestPayment(ratePerPeriod, periodNumber, numberOfPeriods, -totalPrincipal),
-                    principalPayment : _financial.PrincipalPayment(ratePerPeriod, periodNumber, numberOfPeriods, -totalPrincipal),
-                    balanceLeft : _financial.InterestPayment(ratePerPeriod, periodNumber + 1, numberOfPeriods, -totalPrincipal) / ratePerPeriod
-                );
+                var principalPayment = _financial.PrincipalPayment(ratePerPeriod, periodNumber, numberOfPeriods, -totalPrincipal);
+
+                var interestPayment = _financial.InterestPayment(ratePerPeriod, periodNumber, numberOfPeriods, -totalPrincipal);
+
+                var balanceLeft = ratePerPeriod == 0 ?
+                    totalPrincipal - principalPayment * periodNumber :
+                    _financial.InterestPayment(ratePerPeriod, periodNumber + 1, numberOfPeriods, -totalPrincipal) / ratePerPeriod;
+
+                schedule[periodNumber - 1] = new AmortizationPeriod(periodNumber, interestPayment, principalPayment, balanceLeft);
             });
 
             var paymentPerPeriod = _financial.Payment(ratePerPeriod, numberOfPeriods, -totalPrincipal);
