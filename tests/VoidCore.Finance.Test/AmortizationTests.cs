@@ -10,13 +10,37 @@ namespace VoidCore.Finance.Test
         [Fact]
         public void MediumMortgage()
         {
-            var request = new AmortizationRequest(340000, 360, .045m / 12);
+            var request = new AmortizationRequest(340000, 360, 0.045m / 12);
 
             var response = _calculator.Calculate(request);
 
             CheckLoan(1722.73m, 280182.82m, 620182.82m, 30 * 12, response);
             CheckPeriod(452.79m, 1269.94m, 338198.98m, response.Schedule[3]);
             CheckPeriod(1716.29m, 6.44m, 0.00m, response.Schedule[request.NumberOfPeriods - 1]);
+        }
+
+        [Fact]
+        public void MediumNegativePrincipalMortgage()
+        {
+            var request = new AmortizationRequest(-340000, 360, 0.045m / 12);
+
+            var response = _calculator.Calculate(request);
+
+            CheckLoan(-1722.73m, -280182.82m, -620182.82m, 30 * 12, response);
+            CheckPeriod(-452.79m, -1269.94m, -338198.98m, response.Schedule[3]);
+            CheckPeriod(-1716.29m, -6.44m, 0.00m, response.Schedule[request.NumberOfPeriods - 1]);
+        }
+
+        [Fact]
+        public void MediumNegativeInterestMortgage()
+        {
+            var request = new AmortizationRequest(340000, 360, -0.045m / 12);
+
+            var response = _calculator.Calculate(request);
+
+            CheckLoan(444.68m, -179914.99m, 160085.01m, 30 * 12, response);
+            CheckPeriod(1700.41m, -1255.73m, 333159.87m, response.Schedule[3]);
+            CheckPeriod(446.35m, -1.67m, 0.00m, response.Schedule[request.NumberOfPeriods - 1]);
         }
 
         [Fact]
@@ -34,7 +58,7 @@ namespace VoidCore.Finance.Test
         [Fact]
         public void SmallLoanMonthly()
         {
-            var request = new AmortizationRequest(2000, 60, .005m / 12);
+            var request = new AmortizationRequest(2000, 60, 0.005m / 12);
 
             var response = _calculator.Calculate(request);
 

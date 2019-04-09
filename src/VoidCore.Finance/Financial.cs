@@ -2,19 +2,10 @@
 
 namespace VoidCore.Finance
 {
-    /// <summary>
-    /// This class has the functionality of the VB.Net and Excel Financial functions, which specialize in time-value of money.
-    /// </summary>
+    /// <inheritdoc/>
     public class Financial : IFinancial
     {
-        /// <summary>
-        /// Finds the future value of an annuity of periodic fixed payments and fixed interest rate.
-        /// </summary>
-        /// <param name="interestRatePerPeriod">The interest rate per period. Note: use APR divided by number of periods in a year. Use decimal form: 4% should be passed as .04.</param>
-        /// <param name="numberOfPeriods">The total number of periods in the annuity.</param>
-        /// <param name="payment">The amount paid against the annuity every period.</param>
-        /// <param name="presentValue">The present value of the annuity.</param>
-        /// <param name="paymentDueAtBeginningOfPeriod">True implies that the payments are due at the beginning of each period. Default is false.</param>
+        /// <inheritdoc/>
         public decimal FutureValue(decimal interestRatePerPeriod, int numberOfPeriods, decimal payment, decimal presentValue = 0, bool paymentDueAtBeginningOfPeriod = false)
         {
             if (paymentDueAtBeginningOfPeriod)
@@ -37,15 +28,7 @@ namespace VoidCore.Finance
             }
         }
 
-        /// <summary>
-        /// Finds the amount of interest paid as part of the payment made each payment of an annuity of periodic fixed payments and fixed interest rate.
-        /// </summary>
-        /// <param name="interestRatePerPeriod">The interest rate per period. Note: use APR divided by number of periods in a year. Use decimal form: 4% should be passed as .04.</param>
-        /// <param name="periodNumber">The period number in which to find the interest paid.</param>
-        /// <param name="numberOfPeriods">The total number of periods in the annuity.</param>
-        /// <param name="presentValue">The present value of the annuity.</param>
-        /// <param name="futureValue">The future value of the annuity.</param>
-        /// <param name="paymentDueAtBeginningOfPeriod">True implies that the payments are due at the beginning of each period. Default is false.</param>
+        /// <inheritdoc/>
         public decimal InterestPayment(decimal interestRatePerPeriod, int periodNumber, int numberOfPeriods, decimal presentValue, decimal futureValue = 0, bool paymentDueAtBeginningOfPeriod = false)
         {
             var payment = Payment(interestRatePerPeriod, numberOfPeriods, presentValue, futureValue, paymentDueAtBeginningOfPeriod);
@@ -59,11 +42,7 @@ namespace VoidCore.Finance
             return interestPayment;
         }
 
-        /// <summary>
-        /// Finds the net present value of an investment of cash flows (payments and receipts) with a discount rate.
-        /// </summary>
-        /// <param name="interestRatePerPeriod">The interest rate per period. Note: use APR divided by number of periods in a year. Use decimal form: 4% should be passed as .04.</param>
-        /// <param name="cashFlows">An array of cashflows in the order they are transacted.</param>
+        /// <inheritdoc/>
         public decimal NetPresentValue(decimal interestRatePerPeriod, params decimal[] cashFlows)
         {
             var netPresentValue = 0.0m;
@@ -76,14 +55,7 @@ namespace VoidCore.Finance
             return netPresentValue;
         }
 
-        /// <summary>
-        /// Finds the payment amount per period for an an annuity of periodic fixed payments and fixed interest rate.
-        /// </summary>
-        /// <param name="interestRatePerPeriod">The interest rate per period. Note: use APR divided by number of periods in a year. Use decimal form: 4% should be passed as .04.</param>
-        /// <param name="numberOfPeriods">The total number of periods in the annuity.</param>
-        /// <param name="presentValue">The present value of the annuity.</param>
-        /// <param name="futureValue">The future value of the annuity.</param>
-        /// <param name="paymentDueAtBeginningOfPeriod">True implies that the payments are due at the beginning of each period. Default is false.</param>
+        /// <inheritdoc/>
         public decimal Payment(decimal interestRatePerPeriod, int numberOfPeriods, decimal presentValue, decimal futureValue = 0, bool paymentDueAtBeginningOfPeriod = false)
         {
             decimal payment;
@@ -110,14 +82,7 @@ namespace VoidCore.Finance
             return payment;
         }
 
-        /// <summary>
-        /// Finds the present value of an annuity of periodic fixed payments and fixed interest rate.
-        /// </summary>
-        /// <param name="interestRatePerPeriod">The interest rate per period. Note: use APR divided by number of periods in a year. Use decimal form: 4% should be passed as .04.</param>
-        /// <param name="numberOfPeriods">The total number of periods in the annuity.</param>
-        /// <param name="payment">The amount paid against the annuity every period.</param>
-        /// <param name="futureValue">The future value of the annuity.</param>
-        /// <param name="paymentDueAtBeginningOfPeriod">True implies that the payments are due at the beginning of each period. Default is false.</param>
+        /// <inheritdoc/>
         public decimal PresentValue(decimal interestRatePerPeriod, int numberOfPeriods, decimal payment, decimal futureValue = 0, bool paymentDueAtBeginningOfPeriod = false)
         {
             var num = 1.0m;
@@ -135,15 +100,7 @@ namespace VoidCore.Finance
             return -(futureValue + ((payment * num) * ((pow - 1) / interestRatePerPeriod))) / pow;
         }
 
-        /// <summary>
-        /// Finds the amount of principal paid as part of the payment made each payment of an annuity of periodic fixed payments and fixed interest rate.
-        /// </summary>
-        /// <param name="interestRatePerPeriod">The interest rate per period. Note: use APR divided by number of periods in a year. Use decimal form: 4% should be passed as .04.</param>
-        /// <param name="periodNumber">The period number in which to find the interest paid.</param>
-        /// <param name="numberOfPeriods">The total number of periods in the annuity.</param>
-        /// <param name="presentValue">The present value of the annuity.</param>
-        /// <param name="futureValue">The future value of the annuity.</param>
-        /// <param name="paymentDueAtBeginningOfPeriod">True implies that the payments are due at the beginning of each period. Default is false.</param>
+        /// <inheritdoc/>
         public decimal PrincipalPayment(decimal interestRatePerPeriod, int periodNumber, int numberOfPeriods, decimal presentValue, decimal futureValue = 0, bool paymentDueAtBeginningOfPeriod = false)
         {
             var payment = Payment(interestRatePerPeriod, numberOfPeriods, presentValue, futureValue, paymentDueAtBeginningOfPeriod);
@@ -157,14 +114,7 @@ namespace VoidCore.Finance
             return payment - interestPayment;
         }
 
-        /// <summary>
-        /// Finds the number of payment periods left in an annuity.
-        /// </summary>
-        /// <param name="interestRatePerPeriod">The interest rate per period. Note: use APR divided by number of periods in a year. Use decimal form: 4% should be passed as .04.</param>
-        /// <param name="payment">The amount paid against the annuity every period.</param>
-        /// <param name="presentValue">The present value of the annuity.</param>
-        /// <param name="futureValue">The future value of the annuity.</param>
-        /// <param name="paymentDueAtBeginningOfPeriod">True implies that the payments are due at the beginning of each period. Default is false.</param>
+        /// <inheritdoc/>
         public decimal NumberOfPeriods(decimal interestRatePerPeriod, decimal payment, decimal presentValue, decimal futureValue = 0, bool paymentDueAtBeginningOfPeriod = false)
         {
             if (presentValue + futureValue == 0)

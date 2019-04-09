@@ -4,3 +4,7 @@ function Stop-OnError {
     Exit $LASTEXITCODE
   }
 }
+
+$projectName = "VoidCore.Finance"
+
+$testProjectFolder = "../tests/$projectName.Test"
