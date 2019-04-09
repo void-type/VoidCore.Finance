@@ -1,7 +1,7 @@
 ﻿namespace VoidCore.Finance
 {
     /// <summary>
-    /// Allows the static Financial library to be injected as a dependency.
+    /// Functions for calculating the time value of money.
     /// </summary>
     public interface IFinancial
     {
