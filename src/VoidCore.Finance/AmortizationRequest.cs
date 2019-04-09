@@ -15,11 +15,6 @@ namespace VoidCore.Finance
         /// <param name="ratePerPeriod">The interest rate per period of the loan.</param>
         public AmortizationRequest(decimal totalPrincipal, int numberOfPeriods, decimal ratePerPeriod)
         {
-            if (totalPrincipal < 0)
-            {
-                throw new ArgumentException("Cannot be less than 0.", nameof(totalPrincipal));
-            }
-
             if (numberOfPeriods < 1)
             {
                 throw new ArgumentException("Cannot be less than 1.", nameof(numberOfPeriods));
