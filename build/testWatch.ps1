@@ -1,3 +1,5 @@
-Push-Location -Path "../tests/VoidCore.Finance.Test"
+. ./util.ps1
+
+Push-Location -Path "$testProjectFolder"
 dotnet watch test --configuration "Debug"
 Pop-Location
