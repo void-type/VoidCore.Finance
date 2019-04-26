@@ -1,9 +1,11 @@
 # VoidCore.Finance
 
 [![License](https://img.shields.io/github/license/void-type/VoidCore.Finance.svg?style=flat-square)](https://github.com/void-type/VoidCore.Finance/blob/master/LICENSE.txt)
-[![Build Status](https://img.shields.io/azure-devops/build/void-type/VoidCore.Finance/6.svg?style=flat-square)](https://dev.azure.com/void-type/VoidCore.Finance/_build/latest?definitionId=6&branchName=master)
-[![Test Coverage](https://img.shields.io/azure-devops/coverage/void-type/VoidCore.Finance/6.svg?style=flat-square)](https://dev.azure.com/void-type/VoidCore.Finance/_build/latest?definitionId=6&branchName=master)
+[![Build Status](https://img.shields.io/azure-devops/build/void-type/VoidCore.Finance/3.svg?style=flat-square)](https://dev.azure.com/void-type/VoidCore.Finance/_build/latest?definitionId=3&branchName=master)
+[![Test Coverage](https://img.shields.io/azure-devops/coverage/void-type/VoidCore.Finance/3.svg?style=flat-square)](https://dev.azure.com/void-type/VoidCore.Finance/_build/latest?definitionId=3&branchName=master)
+
 [![NuGet package](https://img.shields.io/nuget/v/VoidCore.Finance.svg?style=flat-square)](https://www.nuget.org/packages/VoidCore.Finance/)
+[![MyGet package](https://img.shields.io/myget/voidcoredev/vpre/VoidCore.Finance.svg?label=myget&style=flat-square)](https://www.myget.org/feed/voidcoredev/package/nuget/VoidCore.Finance)
 
 A financial library with primary focus on simple amortization and time-value of money.
 
