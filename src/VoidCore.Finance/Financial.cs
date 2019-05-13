@@ -23,7 +23,7 @@ namespace VoidCore.Finance
             }
             else
             {
-                var pow = (decimal) Math.Pow(1 + (double) interestRatePerPeriod, numberOfPeriods);
+                var pow = (decimal)Math.Pow(1 + (double)interestRatePerPeriod, numberOfPeriods);
                 return -(payment * (pow - 1) / interestRatePerPeriod + presentValue * pow);
             }
         }
@@ -49,7 +49,7 @@ namespace VoidCore.Finance
 
             for (var i = 0; i < cashFlows.Length; i++)
             {
-                netPresentValue += cashFlows[i] / (decimal) Math.Pow((1 + (double) interestRatePerPeriod), (i + 1));
+                netPresentValue += cashFlows[i] / (decimal)Math.Pow((1 + (double)interestRatePerPeriod), (i + 1));
             }
 
             return netPresentValue;
@@ -70,7 +70,7 @@ namespace VoidCore.Finance
             }
             else
             {
-                var pow = (decimal) Math.Pow(1 + (double) interestRatePerPeriod, numberOfPeriods);
+                var pow = (decimal)Math.Pow(1 + (double)interestRatePerPeriod, numberOfPeriods);
                 payment = interestRatePerPeriod / (pow - 1) * -(presentValue * pow + futureValue);
             }
 
@@ -86,7 +86,7 @@ namespace VoidCore.Finance
         public decimal PresentValue(decimal interestRatePerPeriod, int numberOfPeriods, decimal payment, decimal futureValue = 0, bool paymentDueAtBeginningOfPeriod = false)
         {
             var num = 1.0m;
-            var pow = (decimal) Math.Pow(1 + (double) interestRatePerPeriod, numberOfPeriods);
+            var pow = (decimal)Math.Pow(1 + (double)interestRatePerPeriod, numberOfPeriods);
 
             if (interestRatePerPeriod == 0)
             {
@@ -129,11 +129,11 @@ namespace VoidCore.Finance
 
             decimal adjustedPayment = paymentDueAtBeginningOfPeriod ? payment * (1 + interestRatePerPeriod) : payment;
 
-            var a = (double) (-(interestRatePerPeriod * futureValue - adjustedPayment));
-            var b = (double) (interestRatePerPeriod * presentValue + adjustedPayment);
-            var c = (double) (1 + interestRatePerPeriod);
+            var a = (double)(-(interestRatePerPeriod * futureValue - adjustedPayment));
+            var b = (double)(interestRatePerPeriod * presentValue + adjustedPayment);
+            var c = (double)(1 + interestRatePerPeriod);
 
-            return (decimal) (Math.Log(a / b) / Math.Log(c));
+            return (decimal)(Math.Log(a / b) / Math.Log(c));
         }
     }
 }
