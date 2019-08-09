@@ -10,7 +10,7 @@ namespace VoidCore.Finance
         {
             if (paymentDueAtBeginningOfPeriod)
             {
-                payment = payment * (1 + interestRatePerPeriod);
+                payment *= 1 + interestRatePerPeriod;
             }
 
             if (numberOfPeriods == 0)
