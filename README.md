@@ -15,15 +15,10 @@ VoidCore.Finance is a replacement for the VisualBasic and Excel Financial functi
 
 ## Developers
 
+VoidCore.Finance is built on [Azure Pipelines](https://dev.azure.com/void-type/VoidCore.Finance/_build/latest?definitionId=3&branchName=master) and released on [Nuget](https://www.nuget.org/packages?q=voidcore&prerel=false).
+
 To work on VoidCore.Finance, you will need the [.Net Core SDK](https://dotnet.microsoft.com/download).
 
-You will also need some global tools. To install them easily, just run the following:
-
-```powershell
-cd build/
-./installAndUpdateTools.ps1
-```
-
-See the /build folder for scripts used to test and build this project.
+See the /build folder for scripts used to test and build this project. Run build.ps1 to make a production build.
 
 There are [VSCode](https://code.visualstudio.com/) tasks for each script. The build task (ctrl + shift + b) performs the standard CI build.
