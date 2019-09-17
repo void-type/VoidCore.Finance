@@ -1,6 +1,8 @@
 [CmdletBinding()]
 param(
   [string] $Configuration = "Release",
+  [switch] $SkipFormat,
+  [switch] $SkipOutdated,
   [switch] $SkipTest,
   [switch] $SkipTestReport,
   [switch] $SkipPack
@@ -15,10 +17,21 @@ Remove-Item -Path "../testResults" -Recurse -ErrorAction SilentlyContinue
 
 # Build solution
 Push-Location -Path "../"
-dotnet format --check
-Stop-OnError
+
+# Restore local dotnet tools
+dotnet tool restore
+
+if (-not $SkipFormat) {
+  dotnet format --check
+  Stop-OnError
+}
+
 dotnet restore
-dotnet list package --outdated
+
+if (-not $SkipOutdated) {
+  dotnet outdated
+}
+
 dotnet build --configuration "$Configuration" --no-restore
 Stop-OnError
 Pop-Location
@@ -43,7 +56,7 @@ if (-not $SkipTest) {
   if (-not $SkipTestReport) {
     # Generate code coverage report
     Push-Location -Path "../coverage"
-    reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:." "-reporttypes:HtmlInline_AzurePipelines"
+    dotnet reportgenerator "-reports:coverage.cobertura.xml" "-targetdir:." "-reporttypes:HtmlInline_AzurePipelines"
     Stop-OnError
     Pop-Location
   }
@@ -55,12 +68,12 @@ if (-not $SkipPack) {
     Where-Object { (Test-Path -Path "$($_.FullName)/*.csproj") -eq $true } |
     Select-Object -ExpandProperty Name |
     ForEach-Object {
-    Push-Location -Path "../src/$_"
-    InheritDoc --base "./bin/$Configuration/" --overwrite
-    Stop-OnError
-    dotnet pack --configuration "$Configuration" --no-build --output "../../artifacts/pre-release" /p:PublicRelease=false
-    dotnet pack --configuration "$Configuration" --no-build --output "../../artifacts"
-    Stop-OnError
-    Pop-Location
-  }
+      Push-Location -Path "../src/$_"
+      dotnet InheritDoc --base "./bin/$Configuration/" --overwrite
+      Stop-OnError
+      dotnet pack --configuration "$Configuration" --no-build --output "../../artifacts/pre-release" /p:PublicRelease=false
+      dotnet pack --configuration "$Configuration" --no-build --output "../../artifacts"
+      Stop-OnError
+      Pop-Location
+    }
 }
