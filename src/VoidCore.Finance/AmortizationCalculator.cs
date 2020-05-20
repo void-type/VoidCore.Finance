@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace VoidCore.Finance
@@ -26,6 +27,8 @@ namespace VoidCore.Finance
         /// <returns>A completed AmortizationResponse</returns>
         public AmortizationResponse Calculate(AmortizationRequest request)
         {
+            request = request ?? throw new ArgumentNullException(nameof(request), "Calculator request cannot be null.");
+
             var ratePerPeriod = request.RatePerPeriod;
             var numberOfPeriods = request.NumberOfPeriods;
             var totalPrincipal = request.TotalPrincipal;
