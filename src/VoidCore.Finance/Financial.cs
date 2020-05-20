@@ -127,10 +127,10 @@ namespace VoidCore.Finance
                 return -(presentValue + futureValue) / payment;
             }
 
-            decimal adjustedPayment = paymentDueAtBeginningOfPeriod ? payment * (1 + interestRatePerPeriod) : payment;
+            var adjustedPayment = paymentDueAtBeginningOfPeriod ? payment * (1 + interestRatePerPeriod) : payment;
 
-            var a = (double)(-(interestRatePerPeriod * futureValue - adjustedPayment));
-            var b = (double)(interestRatePerPeriod * presentValue + adjustedPayment);
+            var a = (double)-((interestRatePerPeriod * futureValue) - adjustedPayment);
+            var b = (double)((interestRatePerPeriod * presentValue) + adjustedPayment);
             var c = (double)(1 + interestRatePerPeriod);
 
             return (decimal)(Math.Log(a / b) / Math.Log(c));
