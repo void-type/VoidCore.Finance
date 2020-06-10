@@ -6,5 +6,6 @@ function Stop-OnError {
 }
 
 $projectName = "VoidCore.Finance"
+$projectVersion = (dotnet nbgv get-version -f json | ConvertFrom-Json).NuGetPackageVersion
 
 $testProjectFolder = "../tests/$projectName.Test"
