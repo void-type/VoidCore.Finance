@@ -7,6 +7,8 @@
 [![NuGet package](https://img.shields.io/nuget/v/VoidCore.Finance.svg?style=flat-square)](https://www.nuget.org/packages/VoidCore.Finance/)
 [![MyGet package](https://img.shields.io/myget/voidcoredev/vpre/VoidCore.Finance.svg?label=myget&style=flat-square)](https://www.myget.org/feed/voidcoredev/package/nuget/VoidCore.Finance)
 
+:warning: This repository was merged with the main [VoidCore](https://github.com/void-type/VoidCore) repo.
+
 A financial library with primary focus on simple amortization and time-value of money.
 
 VoidCore.Finance is a replacement for the VisualBasic and Excel Financial functions for C#. It includes a basic amortization calculator for performance-optimized schedule creation.
